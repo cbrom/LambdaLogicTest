@@ -35,13 +35,9 @@ public class CalculateBooking {
 	}
 
 	@Test
-	public void emptyBookingsTest() {
+	public void emptyBookingsTest() throws InconsistentCurrenciesException {
 		List<Booking> bookings = new ArrayList<Booking>() {};
-		try {
-			evaluator.calculate(bookings, recipientPK);
-		} catch (InconsistentCurrenciesException e) {
-			e.printStackTrace();
-		}
+		evaluator.calculate(bookings, recipientPK);
 	}
 	
 	@Test
@@ -118,7 +114,9 @@ public class CalculateBooking {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;};
-		CurrencyAmount currencyAmount = new CurrencyAmount(TypeHelper.toBigDecimal("1.07"), "usd");
+		CurrencyAmount totalAmountCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("1.07"), "usd");
+		CurrencyAmount totalOpenCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.26"), "usd");
+		CurrencyAmount totalPaidCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.81"), "usd");
 		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("0.10"), "usd", TypeHelper.toBigDecimal("19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
 		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("0.10"), "usd", TypeHelper.toBigDecimal("19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
 		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("0.10"), "usd", TypeHelper.toBigDecimal("19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
@@ -132,7 +130,36 @@ public class CalculateBooking {
 		
 		evaluator.calculate(bookings, recipientPK);
 			
-		assertEquals(evaluator.getTotalAmount(), currencyAmount);
+		assertEquals(evaluator.getTotalAmount(), totalAmountCurrency);
+		assertEquals(evaluator.getTotalOpenAmount(), totalOpenCurrency);
+		assertEquals(evaluator.getTotalPaidAmount(), totalPaidCurrency);
+	}
+	
+	@Test
+	public void smallTaxRateTest() throws InconsistentCurrenciesException, ParseException {
+		List<Booking> bookings = new ArrayList<Booking>() {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;};
+		CurrencyAmount totalAmountCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("100.19"), "usd");
+		CurrencyAmount totalOpenCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.29"), "usd");
+		CurrencyAmount totalPaidCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.90"), "usd");
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("10"), "usd", TypeHelper.toBigDecimal("0.19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
+		
+		evaluator.calculate(bookings, recipientPK);
+			
+		assertEquals(evaluator.getTotalAmount(), totalAmountCurrency);
 	}
 
 }
