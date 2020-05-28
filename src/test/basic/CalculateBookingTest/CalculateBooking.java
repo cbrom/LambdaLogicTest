@@ -44,10 +44,10 @@ public class CalculateBooking {
 	public void basicTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;};
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;};
 		CurrencyAmount currencyAmount = new CurrencyAmount(TypeHelper.toBigDecimal("0.12"), "usd");
 		bookings.add(new Booking(1L, new Price(TypeHelper.toBigDecimal("0.10"), "usd", TypeHelper.toBigDecimal("19"), false), null, null, null, TypeHelper.toBigDecimal("0.09"), null, null, null, 1L, null));
 		evaluator.calculate(bookings, recipientPK);
@@ -63,10 +63,10 @@ public class CalculateBooking {
 	public void inconsistentCurrencyTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;};
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;};
 		inconsistentException = new InconsistentCurrenciesException(null, null);
 		expectedException.expect(InconsistentCurrenciesException.class);
 		
@@ -81,10 +81,10 @@ public class CalculateBooking {
 	public void roundErrorsTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;};
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;};
 		CurrencyAmount totalAmountCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("1.19"), "usd");
 		CurrencyAmount totalOpenCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.29"), "usd");
 		CurrencyAmount totalPaidCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.90"), "usd");
@@ -110,10 +110,10 @@ public class CalculateBooking {
 	public void differentInvoiceRecipientTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;};
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;};
 		CurrencyAmount totalAmountCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("1.07"), "usd");
 		CurrencyAmount totalOpenCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.26"), "usd");
 		CurrencyAmount totalPaidCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.81"), "usd");
@@ -139,10 +139,10 @@ public class CalculateBooking {
 	public void smallTaxRateTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;};
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;};
 		CurrencyAmount totalAmountCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("100.19"), "usd");
 		CurrencyAmount totalOpenCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.29"), "usd");
 		CurrencyAmount totalPaidCurrency = new CurrencyAmount(TypeHelper.toBigDecimal("0.90"), "usd");
