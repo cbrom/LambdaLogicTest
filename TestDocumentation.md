@@ -7,7 +7,7 @@
 |  Expected results | no error |
 |  Result | pass |
 
-
+<hr/>
 | Test Case Name  |  basicTest |
 |---|---|
 |  Module to be tested | InvoiceRecipientBookingsCurrencyAmountsEvaluator.calculate()  |
