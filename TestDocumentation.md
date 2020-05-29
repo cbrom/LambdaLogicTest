@@ -7,7 +7,8 @@
 |  Expected results | no error |
 |  Result | pass |
 
-<hr/>
+<hr>
+
 | Test Case Name  |  basicTest |
 |---|---|
 |  Module to be tested | InvoiceRecipientBookingsCurrencyAmountsEvaluator.calculate()  |
@@ -17,6 +18,7 @@
 |  Expected results | Total amount of ```0.12``` |
 |  Result | pass |
 
+<hr>
 
 | Test Case Name  |  inconsistentCurrencyTest |
 |---|---|
@@ -27,6 +29,7 @@
 |  Expected results | InconsistentCurrenciesException |
 |  Result | pass |
 
+<hr>
 
 | Test Case Name  |  roundErrorsTest |
 |---|---|
@@ -37,6 +40,7 @@
 |  Expected results | getTotalAmount() = ```1.19``` <br/> getTotalOpenAmount = ```0.29``` <br/> getTotalPaidAmount() = ```0.90``` |
 |  Result | pass |
 
+<hr>
 
 | Test Case Name  |  differentInvoiceRecipientTest |
 |---|---|
@@ -47,6 +51,7 @@
 |  Expected results | getTotalAmount() = ```1.07``` <br/> getTotalOpenAmount = ```0.26``` <br/> getTotalPaidAmount() = ```0.81``` |
 |  Result | pass |
 
+<hr>
 
 | Test Case Name  |  smallTaxRateTest |
 |---|---|
@@ -57,6 +62,7 @@
 |  Expected results | getTotalAmount() = ```100.19``` |
 |  Result | pass |
 
+<hr>
 
 | Test Case Name  |  zeroPaidAndTotalAmountsTest |
 |---|---|
@@ -66,3 +72,5 @@
 |  Test Steps | Create empty list of bookings <br/> Create target class object <br/> Add ten bookings specified above <br/> Run calculate method |
 |  Expected results | etTotalAmount() = ```1.07``` <br/> getTotalOpenAmount = ```0.26``` <br/> getTotalPaidAmount() = ```0.81``` |
 |  Result | pass |
+
+<hr>
