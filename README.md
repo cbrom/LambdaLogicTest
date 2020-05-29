@@ -50,7 +50,7 @@ which up on execution runs the ```CalculateBookingTest```.
 
 Run test: 
 compile TestRunner.java using ``javac```
-```java TestRunner``
+```java TestRunner```
 
 Refer to [a Test Documentation](TestDocumentation.md)
 
