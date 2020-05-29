@@ -2,15 +2,12 @@ package com.lambdalogic.test.booking;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.lambdalogic.test.booking.exception.InconsistentCurrenciesException;
 import com.lambdalogic.test.booking.model.Booking;
 import com.lambdalogic.test.booking.model.CurrencyAmount;
 import com.lambdalogic.test.booking.model.Price;
-import com.lambdalogic.test.booking.util.TypeHelper;
 
 /**
  * This program implements the {@link IBookingsCurrencyAmountsEvaluator} interface specified in this package
@@ -46,8 +43,8 @@ public class InvoiceRecipientBookingsCurrencyAmountsEvaluator implements IBookin
 	 * <p></p>
 	 * <b>Conditions</b>
 	 * <p> -<code>invoiceRecipientID</code> matches ( {@link Booking#getInvoiceRecipientPK()} )</p>
-	 * <p> - all bookings have the same ( {@link Booking#getCurrency()()} ) values</p>
 	 * <p> - both ( {@link Booking#getTotalAmount()())} ) and ( {@link Booking#getPaidAmount()()())})'s values are not zero.</p>
+	 * <p> - all bookings have the same ( {@link Booking#getCurrency()()} ) values (this is relevant only if the above conditions are satisfied)</p>
 	 * 
 	 * @see IBookingsCurrencyAmountsEvaluator#calculate(List, Long)
 	 */
