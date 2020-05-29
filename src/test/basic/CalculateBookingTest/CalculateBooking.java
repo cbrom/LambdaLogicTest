@@ -18,6 +18,16 @@ import com.lambdalogic.test.booking.model.CurrencyAmount;
 import com.lambdalogic.test.booking.model.Price;
 import com.lambdalogic.test.booking.util.TypeHelper;
 
+
+/**
+ * Test cases for  {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator} implementation
+ * 
+ * @author Cbrom
+ * @version 1.0
+ * @since 2019-05-28
+ *
+ */
+
 public class CalculateBooking {
 	InvoiceRecipientBookingsCurrencyAmountsEvaluator evaluator;
 	Long recipientPK;
