@@ -34,6 +34,10 @@ public class CalculateBooking {
 		expectedException = ExpectedException.none();
 	}
 
+	/**
+	 * Test {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} method with an empty bookingList.
+	 * @throws InconsistentCurrenciesException
+	 */
 	@Test
 	public void emptyBookingsTest() throws InconsistentCurrenciesException {
 		List<Booking> bookings = new ArrayList<Booking>() {
@@ -45,6 +49,11 @@ public class CalculateBooking {
 		evaluator.calculate(bookings, recipientPK);
 	}
 	
+	/**
+	 * Test {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} method with one booking. 	
+	 * @throws InconsistentCurrenciesException
+	 * @throws ParseException
+	 */
 	@Test
 	public void basicTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
@@ -64,7 +73,12 @@ public class CalculateBooking {
 		assertEquals(currencyAmount, evaluator.getTotalAmount());
 	}
 	
-	@Test(expected = Exception.class) 
+	/**
+	 * Test with {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} method with bookingList with different currencies.
+	 * @throws InconsistentCurrenciesException
+	 * @throws ParseException
+	 */
+	@Test(expected = InconsistentCurrenciesException.class) 
 	public void inconsistentCurrencyTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
 
@@ -82,6 +96,11 @@ public class CalculateBooking {
 		assertEquals(currencyAmount, evaluator.getTotalAmount());
 	}
 	
+	/**
+	 * Test {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} for summing up rounded values.
+	 * @throws InconsistentCurrenciesException
+	 * @throws ParseException
+	 */
 	@Test
 	public void roundErrorsTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
@@ -111,6 +130,11 @@ public class CalculateBooking {
 		assertEquals(totalPaidCurrency, evaluator.getTotalPaidAmount());
 	}
 	
+	/**
+	 * Test {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} with different <code>InvoiceRecipientID</code> values.
+	 * @throws InconsistentCurrenciesException
+	 * @throws ParseException
+	 */
 	@Test
 	public void differentInvoiceRecipientTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
@@ -140,6 +164,12 @@ public class CalculateBooking {
 		assertEquals(totalPaidCurrency, evaluator.getTotalPaidAmount());
 	}
 	
+	
+	/**
+	 * Test the effect of small tax value in {@link InvoiceRecipientBookingsCurrencyAmountsEvaluator#calculate(List, Long)} method.
+	 * @throws InconsistentCurrenciesException
+	 * @throws ParseException
+	 */
 	@Test
 	public void smallTaxRateTest() throws InconsistentCurrenciesException, ParseException {
 		List<Booking> bookings = new ArrayList<Booking>() {
