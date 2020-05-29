@@ -44,6 +44,15 @@ multiplying them by 100 would make the decimal points ```.00```. This multiplica
 because multiplying two BigDecimal objects with the first one ```.00``` decimal points and ```.ab```(two significant figures) decimal
 points will result in a BigDecimal of two significant figures. Therefore the original value of calcultions in gross, net, and 
 tax amount would be preserved.
+### Testing
+A ```test``` package is provided along with one test class ```CalculateBookingTest```. The ```test``` package has a TestRunner, 
+which up on execution runs the ```CalculateBookingTest```.
+
+Run test: 
+compile TestRunner.java using ``javac```
+```java TestRunner``
+
+Refer to [a Test Documentation](TestDocumentation.md)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
