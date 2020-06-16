@@ -65,8 +65,7 @@ public class InvoiceRecipientBookingsCurrencyAmountsEvaluator implements IBookin
 			
 			if (booking.getInvoiceRecipientPK().equals(invoiceRecipientID)) {
 				if  (
-						!(booking.getTotalAmount().equals(Price.ZERO) && 
-						!(booking.getPaidAmount().equals(Price.ZERO)))
+						!( booking.getTotalAmount().equals(Price.ZERO) && booking.getPaidAmount().equals(Price.ZERO))
 				) {
 					String currentCurrency = booking.getCurrency();
 					
@@ -83,6 +82,7 @@ public class InvoiceRecipientBookingsCurrencyAmountsEvaluator implements IBookin
 				
 				
 			}
+			divideBy100(booking);
 		}
 		
 		// convert back to their original values (divide by 100)
@@ -112,7 +112,41 @@ public class InvoiceRecipientBookingsCurrencyAmountsEvaluator implements IBookin
 		price2.setAmount(price2.getAmount().multiply(Price.BD_100));
 		booking.setAdd2Price(price2);
 		
+		Price cancellationPrice = new Price();
+		cancellationPrice.copyFrom(booking.getCancelFeePrice());
+		cancellationPrice.setAmount(cancellationPrice.getAmount().multiply(Price.BD_100));
+		booking.setCancelFeePrice(cancellationPrice);
+		
 		booking.setPaidAmount(booking.getPaidAmount().multiply(Price.BD_100));
+	}
+	
+	/**
+	 * Divides the main price, add1price, add2price and paid amount by 100.
+	 * This avoids affecting the original value of the booking.
+	 * @param booking - a {@link Booking} instance.
+	 */
+	public void divideBy100(Booking booking) {
+		Price mainPrice = new Price();
+		mainPrice.copyFrom(booking.getMainPrice());
+		mainPrice.setAmount(mainPrice.getAmount().divide(Price.BD_100));
+		booking.setMainPrice(mainPrice);
+		
+		Price price1 = new Price();
+		price1.copyFrom(booking.getAdd1Price());
+		price1.setAmount(price1.getAmount().divide(Price.BD_100));
+		booking.setAdd1Price(price1);
+		
+		Price price2 = new Price();
+		price2.copyFrom(booking.getAdd2Price());
+		price2.setAmount(price2.getAmount().divide(Price.BD_100));
+		booking.setAdd2Price(price2);
+		
+		Price cancellationPrice = new Price();
+		cancellationPrice.copyFrom(booking.getCancelFeePrice());
+		cancellationPrice.setAmount(cancellationPrice.getAmount().divide(Price.BD_100));
+		booking.setCancelFeePrice(cancellationPrice);
+		
+		booking.setPaidAmount(booking.getPaidAmount().divide(Price.BD_100));
 	}
 	
 	/**
