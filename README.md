@@ -49,8 +49,9 @@ A ```test``` package is provided along with one test class ```CalculateBookingTe
 which up on execution runs the ```CalculateBookingTest```.
 
 Run test: 
-compile TestRunner.java using ``javac```
-```java TestRunner``
+compile TestRunner.java using ```javac```
+<br/>
+```java TestRunner```
 
 Refer to [a Test Documentation](TestDocumentation.md)
 
